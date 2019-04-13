@@ -1,7 +1,7 @@
 # Stereo Vision With ROS
 This respository contains the launch files to calibrate a stereo vision cameras with ROS and OpenCV and computing a PCL pointcloud from observed data. 
 You need a pair of cameras, I bought a pair of this USB webcam which is okay for this task.
-
+![Alt text](images/stereo_usb_cam.jpg?raw=true "stereo_usb_cam")
 ## Publishing Camera Data
 Save the following text under “stereo_usb_cam_stream_publisher.launch”
 ```
@@ -75,7 +75,7 @@ Then run the following node to publish both cameras.
 ```
 roslaunch stereo_usb_cam_stream_publisher.launch video_device_right:=/dev/video1 video_device_left:=/dev/video2 image_width:=640 image_height:=480 left_camera_name:=left right_camera_name:=right
 ```
-Calling the Calibration Node
+## Calling the Calibration Node
 ```
 rosrun camera_calibration cameracalibrator.py --size 8x6 --square 0.108 right:=/stereo/right/image_raw left:=/stereo/left/image_raw right_camera:=/stereo/right left_camera:=/stereo/left  --no-service-check --approximate=0.1
 ```
@@ -89,5 +89,27 @@ The result gonna be store at /tmp/calibrationdata.tar.gz. Unzip the file and sav
 
 
 
+## Acquiring RGB PCL Point Cloud From Stereo Cameras
+Stream the data from both cameras:
+```
+roslaunch stereo_usb_cam_stream_publisher.launch video_device_right:=/dev/video1 video_device_left:=/dev/video2 image_width:=640 image_height:=480 left_camera_name:=left right_camera_name:=right camera_info:=true camera_info_path:=stereo_camera_info
+```
+
+### Compute the Disparity Map:
+```
+ROS_NAMESPACE=stereo rosrun stereo_image_proc stereo_image_proc _approximate_sync:=true
+```
+### Visualize the Images
+```
+rosrun image_view stereo_view stereo:=/stereo image:=image_rect _approximate_sync:=True _queue_size:=10
+```
+
+![Alt text](images/disparity.jpg?raw=true "disparity")
+
+![Alt text](images/stereo_image_proc_graph.jpg?raw=true "stereo_image_proc_graph")
+
+![Alt text](images/stereo_vision_pointlcoud.jpg?raw=true "graph")
+
+![Alt text](images/stereo_vision_rqt_reconfigure.png?raw=true "graph")
 
 ![alt text](https://img.shields.io/badge/license-BSD-blue.svg)
