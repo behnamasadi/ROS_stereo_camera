@@ -85,7 +85,7 @@ If you have USB cam with some delays you should add the following “–no-servi
 
 The result gonna be store at /tmp/calibrationdata.tar.gz. Unzip the file and save it under “/home/<username>/.ros/stereo_camera_info“
   
-  [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/omqbmmUX1E/0.jpg)](https://www.youtube.com/watch?v=omqbmmUX1E)
+  [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/-omqbmmUX1E/0.jpg)](https://www.youtube.com/watch?v=-omqbmmUX1E)
 
 
 
