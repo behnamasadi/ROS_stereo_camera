@@ -112,4 +112,6 @@ rosrun image_view stereo_view stereo:=/stereo image:=image_rect _approximate_syn
 
 ![Alt text](images/stereo_vision_rqt_reconfigure.png?raw=true "graph")
 
+[References](http://ros-developer.com/2018/01/18/stereo-camera-calibration-with-ros-and-opencv/)
+
 ![alt text](https://img.shields.io/badge/license-BSD-blue.svg)
